@@ -2,8 +2,12 @@ import Foundation
 
 class GPTService {
     private let apiKey: String
-    
-    init(apiKey: String) {
+
+    init() {
+        // Retrieve the API key from Info.plist
+        guard let apiKey = Bundle.main.infoDictionary?["GPT_API_KEY"] as? String else {
+            fatalError("GPT API Key is missing. Please ensure it is configured in the Config.xcconfig file and Info.plist.")
+        }
         self.apiKey = apiKey
     }
     
@@ -13,13 +17,16 @@ class GPTService {
             messages: [
                 .init(role: "user", content: """
                 Extract all purchased items from the receipt text. 
-                Provide the response in the following JSON format:
+                Provide the response in the following JSON format. If discount is not provided set it to 0!:
                 {
                     "items": [
                         {
                             "name": "Item Name",
                             "category": "Item Category",
-                            "quantity": 1
+                            "quantity": 1,
+                            "price": 2.99,
+                            "total": 5.98,
+                            "discount": 1.00
                         }
                     ]
                 }
@@ -94,7 +101,7 @@ class GPTService {
                         
                         // Convert to domain model
                         let items = itemsResponse.items.map {
-                            Item(name: $0.name, category: $0.category, quantity: $0.quantity)
+                            Item(name: $0.name, category: $0.category, quantity: $0.quantity, price: $0.price, total: $0.total, discount: $0.discount )
                         }
                         
                         completion(items)

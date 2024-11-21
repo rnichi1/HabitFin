@@ -6,5 +6,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>GPT_API_KEY</key>
+	<string>$(GPT_API_KEY)</string>
 </dict>
 </plist>

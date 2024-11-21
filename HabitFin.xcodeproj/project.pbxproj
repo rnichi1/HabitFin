@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5F2716772CEF354D00351F20 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5F2716642CEF354D00351F20 /* Config.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5F6294862CEF0F2B008D0599 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F2716642CEF354D00351F20 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		5F6294712CEF0F29008D0599 /* HabitFin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitFin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6294852CEF0F2B008D0599 /* HabitFinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitFinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F62948F2CEF0F2B008D0599 /* HabitFinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitFinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +97,7 @@
 				5F6294882CEF0F2B008D0599 /* HabitFinTests */,
 				5F6294922CEF0F2B008D0599 /* HabitFinUITests */,
 				5F6294722CEF0F29008D0599 /* Products */,
+				5F2716642CEF354D00351F20 /* Config.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2716772CEF354D00351F20 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
