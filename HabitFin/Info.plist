@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>We need access to your camera so you can scan receipts</string>
 	<key>GPT_API_KEY</key>
 	<string>$(GPT_API_KEY)</string>
 	<key>UIBackgroundModes</key>

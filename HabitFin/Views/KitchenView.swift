@@ -13,7 +13,7 @@ struct KitchenView: View {
                         Text(item.name ?? "Unknown Item")
                             .font(.headline)
                         Spacer()
-                        Text("Qty: \(item.quantity ?? 0)")
+                        Text(String(format: "Qty: %.2f", item.quantity ?? 0.0))
                             .foregroundColor(.secondary)
                     }
                 }

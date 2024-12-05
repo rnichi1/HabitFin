@@ -34,7 +34,6 @@ struct ContentView: View {
                             .frame(width: 50, height: 50)
                             .foregroundColor(.blue)
                             .background(Circle().foregroundColor(.white))
-                            .shadow(radius: 5)
                     }
                     .padding(.bottom, 25) // Adjust as needed to align with the tab bar
                     .sheet(isPresented: $showingAddReceiptModal) {

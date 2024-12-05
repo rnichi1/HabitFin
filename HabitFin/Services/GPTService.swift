@@ -40,7 +40,7 @@ class GPTService {
                         )
                     )
                 ],
-                required: ["storeName", "date", "total", "items", "discountsTotal"]
+                required: ["storeName", "date", "total", "items", "discountsTotal", "currency"]
             )
         )
 
@@ -58,7 +58,7 @@ class GPTService {
         - Make sure to take the price that it says on the receipt, don't multiply it for quantitiy adjustment! (There should ALWAYS be a number on the receipt reflecting that!)
         
         - Make sure the currency is the official sign or abrev.
-        - If no currency is available you can infer a currency from country/context or not provide it at all        
+        - If no currency is available you can infer a currency from country/context or just provide dollar sign    
 
         Note: The OCR text may be disorganized or contain errors due to scanning issues. Use context and logical inference to reorganize and interpret the data accurately.
         - Look for patterns like numerical values next to "total," "subtotal," "discount," or item names.

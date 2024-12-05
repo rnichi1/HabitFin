@@ -27,7 +27,53 @@ struct CameraView: View {
                             .shadow(radius: 10)
                     }
                 }
-                .padding(.bottom, 40)
+                .padding(.bottom, 80)
+            }
+            
+            // Grid overlay
+            GeometryReader { geometry in
+                ZStack {
+                    let width = geometry.size.width / 4 * 3
+                    let height = geometry.size.height / 3 * 1.8
+                    let horizontalLines = 6
+                    let verticalLines = 3
+
+                    ForEach(0...horizontalLines, id: \.self) { index in
+                        Path { path in
+                            let y = height / CGFloat(horizontalLines) * CGFloat(index)
+                            path.move(to: CGPoint(x: 0, y: y))
+                            path.addLine(to: CGPoint(x: width, y: y))
+                        }
+                        .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                    }
+
+                    ForEach(0...verticalLines, id: \.self) { index in
+                        Path { path in
+                            let x = width / CGFloat(verticalLines) * CGFloat(index)
+                            path.move(to: CGPoint(x: x, y: 0))
+                            path.addLine(to: CGPoint(x: x, y: height))
+                        }
+                        .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                    }
+                }
+                .offset(y: geometry.size.width / 3.5 )
+                .offset(x: (geometry.size.width - (geometry.size.width / 4 * 3)) / 2)
+                .allowsHitTesting(false)
+            }
+
+
+
+            // Hint text
+            VStack {
+                Text("Align your receipt horizontally for the best results.\nEnsure the edges are within the frame.")
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black.opacity(0.5))
+                    .cornerRadius(8)
+                    .padding(.top, 16)
+                Spacer()
             }
         }
         .alert(isPresented: $viewModel.showingAlert) {

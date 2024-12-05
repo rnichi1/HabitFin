@@ -40,15 +40,17 @@ struct AddReceiptModalView: View {
                 } else {
                     CameraView(viewModel: viewModel)
                         .edgesIgnoringSafeArea(.all)
+                    
+                    PhotosPicker(selection: $viewModel.imageSelection, matching: .images, photoLibrary: .shared()) {
+                        Image(systemName: "photo.on.rectangle.angled")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 60)
+                    }
                 }
-
-                PhotosPicker(selection: $viewModel.imageSelection, matching: .images, photoLibrary: .shared()) {
-                    Image(systemName: "photo.on.rectangle.angled")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(.white)
-                        .padding()
-                }
+            
             }
         }
         .onChange(of: viewModel.isProcessing) { isProcessing in
