@@ -17,6 +17,9 @@ struct CameraView: View {
                     viewModel.isProcessing = false
                 }
             }
+            .onAppear {
+                coordinator = CameraViewControllerRepresentable(onPhotoCaptured: { _ in }).makeCoordinator()
+            }
             .edgesIgnoringSafeArea(.all)
 
             // White capture button at the bottom-center

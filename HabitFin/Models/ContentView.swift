@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showingAddReceiptModal = false
@@ -39,7 +38,7 @@ struct ContentView: View {
                     }
                     .padding(.bottom, 25) // Adjust as needed to align with the tab bar
                     .sheet(isPresented: $showingAddReceiptModal) {
-                        AddReceiptModalView(viewModel: ScanReceiptViewModel(modelContext: modelContext))
+                        AddReceiptModalView(viewModel: ScanReceiptViewModel(modelContext: modelContext), showingAddReceiptModal: $showingAddReceiptModal)
                     }
 
                     Spacer()

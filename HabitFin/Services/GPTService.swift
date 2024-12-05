@@ -45,7 +45,7 @@ class GPTService {
         let request = StructuredRequest(
             model: "gpt-4o-mini",
             messages: [
-                .init(role: "user", content: "Extract purchased items from the following receipt text: \(text)")
+                .init(role: "user", content: "Extract purchased items from the following OCR receipt text. For the name you can correct errors and take the most likely suggestion.: \(text)")
             ],
             functions: [function],
             function_call: .init(name: "extract_purchased_items"),

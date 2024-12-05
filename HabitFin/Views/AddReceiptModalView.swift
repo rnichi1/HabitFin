@@ -4,15 +4,12 @@ import SwiftData
 
 struct AddReceiptModalView: View {
     @ObservedObject var viewModel: ScanReceiptViewModel
+    @Binding var showingAddReceiptModal: Bool
 
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomLeading) {
-                // Camera View
-                CameraView(viewModel: viewModel)
-                    .edgesIgnoringSafeArea(.all)
-
-                // Show selected image if available
+                // If an image is selected, show it; otherwise, show the camera view
                 if let image = viewModel.selectedImage {
                     VStack {
                         Image(uiImage: image)
@@ -20,8 +17,24 @@ struct AddReceiptModalView: View {
                             .scaledToFit()
                             .cornerRadius(8)
                             .padding()
-                        Spacer()
+                        
+                        Button(action: {
+                            viewModel.processReceipt()
+                            showingAddReceiptModal = false
+                        }) {
+                            Text("Process Image")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                                .padding([.leading, .trailing], 16)
+                        }
                     }
+                } else {
+                    CameraView(viewModel: viewModel)
+                        .edgesIgnoringSafeArea(.all)
                 }
 
                 // Photo Picker Icon
