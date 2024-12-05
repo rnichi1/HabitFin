@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F2716772CEF354D00351F20 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5F2716642CEF354D00351F20 /* Config.xcconfig */; };
+		5F2716BB2D0187C800351F20 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2716BA2D0187C800351F20 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		5F2716642CEF354D00351F20 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		5F2716BA2D0187C800351F20 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5F6294712CEF0F29008D0599 /* HabitFin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitFin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6294852CEF0F2B008D0599 /* HabitFinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitFinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F62948F2CEF0F2B008D0599 /* HabitFinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitFinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 		5F6294682CEF0F29008D0599 = {
 			isa = PBXGroup;
 			children = (
+				5F2716BA2D0187C800351F20 /* Launch Screen.storyboard */,
 				5F6294732CEF0F29008D0599 /* HabitFin */,
 				5F6294882CEF0F2B008D0599 /* HabitFinTests */,
 				5F6294922CEF0F2B008D0599 /* HabitFinUITests */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2716BB2D0187C800351F20 /* Launch Screen.storyboard in Resources */,
 				5F2716772CEF354D00351F20 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,9 +295,11 @@
 /* Begin XCBuildConfiguration section */
 		5F6294992CEF0F2B008D0599 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = HabitFin/HabitFin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -304,7 +310,7 @@
 				INFOPLIST_FILE = HabitFin/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,9 +328,11 @@
 		};
 		5F62949A2CEF0F2B008D0599 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = HabitFin/HabitFin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -335,7 +343,7 @@
 				INFOPLIST_FILE = HabitFin/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -353,6 +361,7 @@
 		};
 		5F62949B2CEF0F2B008D0599 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -416,6 +425,7 @@
 		};
 		5F62949C2CEF0F2B008D0599 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -472,6 +482,7 @@
 		};
 		5F62949E2CEF0F2B008D0599 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -491,6 +502,7 @@
 		};
 		5F62949F2CEF0F2B008D0599 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -510,6 +522,7 @@
 		};
 		5F6294A12CEF0F2B008D0599 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -527,6 +540,7 @@
 		};
 		5F6294A22CEF0F2B008D0599 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2716642CEF354D00351F20 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
