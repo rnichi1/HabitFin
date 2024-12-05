@@ -47,21 +47,25 @@ class CameraViewController: UIViewController {
     }
 
     func takePhoto(completion: @escaping (UIImage?) -> Void) {
+        print("here")
         let settings = AVCapturePhotoSettings()
         photoOutput.capturePhoto(with: settings, delegate: self)
+        print("now here")
         photoCaptureCompletionBlock = completion
     }
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation(), error == nil else {
-            photoCaptureCompletionBlock?(nil)
-            return
-        }
+        DispatchQueue.main.async {
+            guard let imageData = photo.fileDataRepresentation(), error == nil else {
+                self.photoCaptureCompletionBlock?(nil)
+                return
+            }
 
-        let image = UIImage(data: imageData)
-        photoCaptureCompletionBlock?(image)
+            let image = UIImage(data: imageData)
+            self.photoCaptureCompletionBlock?(image)
+        }
     }
 }
 
@@ -90,12 +94,14 @@ struct CameraViewControllerRepresentable: UIViewControllerRepresentable {
             }
 
             func capturePhoto() {
-                viewController?.takePhoto { [weak self] image in
+                guard let viewController = viewController else { return }
+                viewController.takePhoto { [weak self] image in
                     DispatchQueue.main.async {
                         self?.parent.onPhotoCaptured(image)
                     }
                 }
             }
+
         }
     }
 

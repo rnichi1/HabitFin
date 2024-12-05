@@ -10,7 +10,8 @@ class Receipt: Identifiable {
     var paymentType: String?
     var discountsTotal: Double?
     var storeName: String?
-    var image: String?
+    var imageData: Data? // Change from image path to Data
+    var currency: String?
 
     init(
         id: UUID? = UUID(),
@@ -20,7 +21,8 @@ class Receipt: Identifiable {
         paymentType: String? = nil,
         discountsTotal: Double? = nil,
         storeName: String? = nil,
-        image: String? = nil
+        imageData: Data? = nil,
+        currency: String? = nil
     ) {
         self.id = id
         self.date = date
@@ -29,6 +31,7 @@ class Receipt: Identifiable {
         self.paymentType = paymentType
         self.discountsTotal = discountsTotal
         self.storeName = storeName
-        self.image = image
+        self.imageData = imageData
+        self.currency = currency
     }
 }

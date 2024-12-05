@@ -6,19 +6,17 @@ class Item: Identifiable {
     var id: UUID?
     var name: String?
     var category: String?
-    var quantity: Int?
+    var quantity: Double?
     var price: Double?
     var total: Double?
-    var discount: Double?
 
     init(
         id: UUID? = UUID(),
         name: String? = nil,
         category: String? = nil,
-        quantity: Int? = 1,
+        quantity: Double? = 1.0,
         price: Double? = nil,
-        total: Double? = nil,
-        discount: Double? = nil
+        total: Double? = nil
     ) {
         self.id = id
         self.name = name
@@ -26,6 +24,5 @@ class Item: Identifiable {
         self.quantity = quantity
         self.price = price
         self.total = total
-        self.discount = discount
     }
 }

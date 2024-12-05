@@ -9,7 +9,6 @@ struct AddReceiptModalView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomLeading) {
-                // If an image is selected, show it; otherwise, show the camera view
                 if let image = viewModel.selectedImage {
                     VStack {
                         Image(uiImage: image)
@@ -18,18 +17,24 @@ struct AddReceiptModalView: View {
                             .cornerRadius(8)
                             .padding()
                         
-                        Button(action: {
-                            viewModel.processReceipt()
-                            showingAddReceiptModal = false
-                        }) {
-                            Text("Process Image")
-                                .font(.headline)
-                                .foregroundColor(.white)
+                        if viewModel.isProcessing {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
                                 .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                                .padding([.leading, .trailing], 16)
+                        } else {
+                            Button(action: {
+                                viewModel.processReceipt()
+                            }) {
+                                Text("Process Image")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.blue)
+                                    .cornerRadius(10)
+                                    .padding([.leading, .trailing], 16)
+                            }
+                            .disabled(viewModel.isProcessing)
                         }
                     }
                 } else {
@@ -37,7 +42,6 @@ struct AddReceiptModalView: View {
                         .edgesIgnoringSafeArea(.all)
                 }
 
-                // Photo Picker Icon
                 PhotosPicker(selection: $viewModel.imageSelection, matching: .images, photoLibrary: .shared()) {
                     Image(systemName: "photo.on.rectangle.angled")
                         .resizable()
@@ -47,5 +51,12 @@ struct AddReceiptModalView: View {
                 }
             }
         }
+        .onChange(of: viewModel.isProcessing) { isProcessing in
+            if !isProcessing {
+                // Close the modal only when processing is complete
+                showingAddReceiptModal = false
+            }
+        }
     }
 }
+

@@ -3,12 +3,13 @@ import SwiftUI
 struct ReceiptDetailView: View {
     let receipt: Receipt
 
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 // Display Receipt Image
-                if let imagePath = receipt.image,
-                   let image = UIImage(contentsOfFile: imagePath) {
+                if let imageData = receipt.imageData,
+                   let image = UIImage(data: imageData) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
@@ -20,15 +21,19 @@ struct ReceiptDetailView: View {
                     .font(.largeTitle)
                     .bold()
 
-                Text(receipt.date?.formatted(date: .abbreviated, time: .shortened) ?? "Unknown Date")
+                Text(formatDate(date: receipt.date))
                     .foregroundColor(.secondary)
+                
+                Text(receipt.paymentType ?? "")
+                    .font(.caption)
+                    .bold()
 
                 // Display Receipt Total
                 HStack {
                     Text("Total:")
                         .font(.headline)
                     Spacer()
-                    Text(String(format: "$%.2f", receipt.total ?? 0.0))
+                    Text(String(format: "\(receipt.currency ?? "") %.2f", receipt.total ?? 0.0))
                         .bold()
                 }
 
@@ -37,7 +42,7 @@ struct ReceiptDetailView: View {
                     Text("Total Discounts:")
                         .font(.headline)
                     Spacer()
-                    Text(String(format: "$%.2f", receipt.discountsTotal ?? 0.0))
+                    Text(String(format: "\(receipt.currency ?? "") %.2f", receipt.discountsTotal ?? 0.0))
                         .foregroundColor(.green)
                 }
 
@@ -50,8 +55,8 @@ struct ReceiptDetailView: View {
                     HStack {
                         Text(item.name ?? "Unknown Item")
                         Spacer()
-                        Text("Qty: \(item.quantity ?? 0)")
-                        Text(String(format: "$%.2f", item.total ?? 0.0))
+                        Text(String(format: "Qty: %.2f", item.quantity ?? 0.0))
+                        Text(String(format: "\(receipt.currency ?? "") %.2f", item.total ?? 0.0))
                     }
                 }
             }
@@ -61,3 +66,5 @@ struct ReceiptDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+

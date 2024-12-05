@@ -5,8 +5,8 @@ struct ReceiptRowView: View {
 
     var body: some View {
         HStack {
-            if let imagePath = receipt.image,
-               let image = UIImage(contentsOfFile: imagePath) {
+            if let imageData = receipt.imageData,
+               let image = UIImage(data: imageData) {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
@@ -27,14 +27,14 @@ struct ReceiptRowView: View {
             VStack(alignment: .leading) {
                 Text(receipt.storeName ?? "Unknown Store")
                     .font(.headline)
-                Text(receipt.date?.formatted(date: .abbreviated, time: .shortened) ?? "Unknown Date")
+                Text(formatDate(date: receipt.date))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
 
             Spacer()
 
-            Text(String(format: "$%.2f", receipt.total ?? 0.0))
+            Text(String(format: "\(receipt.currency ?? "") %.2f", receipt.total ?? 0.0))
                 .font(.headline)
         }
     }
