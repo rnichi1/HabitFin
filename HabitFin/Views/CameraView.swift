@@ -10,25 +10,26 @@ struct CameraView: View {
             // Camera preview
             CameraPreview(camera: camera).ignoresSafeArea(.all, edges: .all)
 
-            // White capture button at the bottom-center
-            VStack {
-                Spacer()
-                Button(action: {
-                    camera.takePic()
-                }) {
-                    ZStack {
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 65, height: 65)
-                            .shadow(radius: 10)
-                        Circle()
-                            .stroke(Color.white, lineWidth: 3)
-                            .frame(width: 75, height: 75)
-                            .shadow(radius: 10)
-                    }
+            // Overlay with darkened area outside the grid
+            GeometryReader { geometry in
+                ZStack {
+                    // Full dark overlay
+                    Color.black.opacity(0.5)
+                    
+                    // Grid area cutout
+                    let width = geometry.size.width / 4 * 3
+                    let height = geometry.size.height / 3 * 1.8
+                    
+                    Rectangle()
+                        .frame(width: width, height: height)
+                        .position(x: width/2 + ((geometry.size.width - (width)) / 2),
+                                  y: height/2 + (geometry.size.width / 3.5))
+                        .blendMode(.destinationOut)
                 }
-                .padding(.bottom, 80)
+                .compositingGroup()
+                .ignoresSafeArea(.all)
             }
+        
             
             // Grid overlay
             GeometryReader { geometry in
@@ -60,12 +61,32 @@ struct CameraView: View {
                 .offset(x: (geometry.size.width - (geometry.size.width / 4 * 3)) / 2)
                 .allowsHitTesting(false)
             }
+            
+            // White capture button at the bottom-center
+            VStack {
+                Spacer()
+                Button(action: {
+                    camera.takePic()
+                }) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 65, height: 65)
+                            .shadow(radius: 10)
+                        Circle()
+                            .stroke(Color.white, lineWidth: 3)
+                            .frame(width: 75, height: 75)
+                            .shadow(radius: 10)
+                    }
+                }
+                .padding(.bottom, 80)
+            }
 
 
 
             // Hint text
             VStack {
-                Text("Align your receipt horizontally for the best results.\nEnsure the edges are within the frame.")
+                Text("Align the items on your receipt horizontally for the best results.\nEnsure the edges are within the frame.")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
