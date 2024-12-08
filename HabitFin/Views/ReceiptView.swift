@@ -2,10 +2,11 @@ import SwiftUI
 import PhotosUI
 import SwiftData
 
+// List of receipts including prompt for first OCR
 struct ReceiptView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var viewModel: ScanReceiptViewModel
-    @Query private var receipts: [Receipt] // Fetch saved receipts, sorted by date
+    @Query private var receipts: [Receipt]
     @Binding var showingAddReceiptModal: Bool
 
     init(modelContext: ModelContext, showingAddReceiptModal: Binding<Bool>) {
@@ -13,6 +14,7 @@ struct ReceiptView: View {
         _showingAddReceiptModal = showingAddReceiptModal
     }
 
+    // UI
     var body: some View {
         NavigationView {
             VStack {

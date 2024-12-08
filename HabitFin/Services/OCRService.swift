@@ -66,6 +66,7 @@ class OCRService {
         return (orderedText)
     }
 
+    // Bounding boxes on image so users see what was recognized
     private func drawBoundingBoxes(for image: UIImage, observations: [VNRecognizedTextObservation]) -> UIImage? {
         let format = UIGraphicsImageRendererFormat()
         format.scale = image.scale
@@ -81,7 +82,7 @@ class OCRService {
             let imageSize = CGSize(width: image.size.width, height: image.size.height)
 
             for observation in observations {
-                // Transform the bounding box to match UIKit's coordinate system
+                // Transform the bounding box to match UIKit's coordinate system (Since it's not the same for Vision)
                 let boundingBox = transformBoundingBox(observation.boundingBox, for: image)
 
                 // Convert normalized coordinates to image coordinates

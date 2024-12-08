@@ -6,11 +6,13 @@ struct AddReceiptModalView: View {
     @ObservedObject var viewModel: ScanReceiptViewModel
     @Binding var showingAddReceiptModal: Bool
 
+    // Modal for adding new Receipt (Includes Camera and Image Picker)
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomLeading) {
                 if let image = viewModel.selectedImage {
                     VStack {
+                        // Selected image preview
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFit()
@@ -38,9 +40,11 @@ struct AddReceiptModalView: View {
                         }
                     }
                 } else {
+                    // camera
                     CameraView(viewModel: viewModel)
                         .edgesIgnoringSafeArea(.all)
                     
+                    // picker
                     PhotosPicker(selection: $viewModel.imageSelection, matching: .images, photoLibrary: .shared()) {
                         Image(systemName: "photo.on.rectangle.angled")
                             .resizable()

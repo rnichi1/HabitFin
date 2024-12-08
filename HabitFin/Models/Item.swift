@@ -1,6 +1,7 @@
 import SwiftData
 import Foundation
 
+// Model of item in SwiftData
 @Model
 class Item: Identifiable {
     var id: UUID?

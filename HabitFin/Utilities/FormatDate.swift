@@ -1,5 +1,6 @@
 import Foundation
 
+// format date to a readable format
 func formatDate(date: Date?) -> String {
     guard let d = date else {
         return Date().formatted(

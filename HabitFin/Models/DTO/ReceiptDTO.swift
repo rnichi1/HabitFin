@@ -1,5 +1,6 @@
 import Foundation
 
+// How GPT understands receipts
 struct ReceiptDTO: Codable {
     let storeName: String
     let date: String

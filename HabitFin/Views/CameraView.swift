@@ -119,6 +119,7 @@ struct CameraView: View {
     }
 }
 
+// Model for camera management
 class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var session = AVCaptureSession()
     @Published var alert = false
@@ -146,6 +147,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
 
+    // initial setup
     func setUp() {
         do {
             session.beginConfiguration()
@@ -181,7 +183,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
 }
 
 
-
+// Preview of camera feed in app
 struct CameraPreview: UIViewRepresentable {
     @ObservedObject var camera: CameraModel
     
@@ -199,6 +201,7 @@ struct CameraPreview: UIViewRepresentable {
         return view
     }
     
+    // Must have due to UIViewRepresentable, but we don't need it so it's empty
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
     }

@@ -2,6 +2,7 @@ import SwiftUI
 import PhotosUI
 import SwiftData
 
+// Model that handles all the states and handling of OCR scanning and GPT calls
 class ScanReceiptViewModel: ObservableObject {
     @Published var imageSelection: PhotosPickerItem? {
         didSet {
@@ -44,6 +45,7 @@ class ScanReceiptViewModel: ObservableObject {
         }
     }
 
+    // ocr and gpt integration
     func processReceipt() {
         guard let image = selectedImage else {
             alertMessage = "Please select an image."
@@ -53,18 +55,20 @@ class ScanReceiptViewModel: ObservableObject {
 
         isProcessing = true
 
+        // pass image to ocr
         ocrService.recognizeText(from: image) { [weak self] text, debugImage in
             guard let self = self else { return }
 
-        
+            // pass ocr text to gpt
             self.gptService.processReceiptText(text) { receipt in
                 DispatchQueue.main.async {
                     self.isProcessing = false
 
                     if let receipt = receipt, let items = receipt.items, !items.isEmpty {
                         do {
-                            // Safely use the debug image
+                            // Safely use the debug image (with bounding boxes)
                             if let debugImage = debugImage, let imageData = debugImage.pngData() {
+                                
                                 // Update receipt details with saved debug image data
                                 receipt.imageData = imageData
 

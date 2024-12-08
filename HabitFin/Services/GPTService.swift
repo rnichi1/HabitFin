@@ -4,15 +4,15 @@ class GPTService {
     private let apiKey: String
 
     init() {
-        // Retrieve the API key from Info.plist
+        // Retrieve the API key from secure location (config)
         guard let apiKey = Bundle.main.infoDictionary?["GPT_API_KEY"] as? String else {
             fatalError("GPT API Key is missing. Please ensure it is configured in the Config.xcconfig file and Info.plist.")
         }
         self.apiKey = apiKey
     }
 
+    // Used for structured output from gpt
     func processReceiptText(_ text: String, completion: @escaping (Receipt?) -> Void) {
-        // Define the function schema with updated fields
         let function = Function(
             name: "extract_receipt_details",
             description: "Extracts details from a receipt text.",
@@ -165,7 +165,7 @@ class GPTService {
     }
 }
 
-// Supporting structures
+// GPT Types and Structures
 struct StructuredRequest: Codable {
     let model: String
     let messages: [Message]
